@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aayush Patel | Software Developer</title>
+<meta name="description" content="Aayush Patel, software developer working with Angular, .NET and the MERN stack.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1020;--surface:#161a31;--surface2:#1e2342;--text:#eceefd;--muted:#9ba1c9;
+  --line:#2b3158;--accent:#8c7bff;--accent2:#2fd3b5;--on-accent:#0d1020;
+  --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --body:'DM Sans','Segoe UI',system-ui,sans-serif;
+  color-scheme:dark;
+}
+[data-theme="day"]{
+  --bg:#f5f6fc;--surface:#ffffff;--surface2:#ecEEfa;--text:#161936;--muted:#5b6188;
+  --line:#d9dcf0;--accent:#4b3fe0;--accent2:#0c9c84;--on-accent:#ffffff;color-scheme:light;
+}
+[data-theme="sunset"]{
+  --bg:#1b1220;--surface:#271a2e;--surface2:#33223b;--text:#fdeef0;--muted:#c9a3b4;
+  --line:#4a3052;--accent:#ff7a90;--accent2:#ffc46b;--on-accent:#1b1220;color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--bg);color:var(--text);font:400 1.0625rem/1.65 var(--body);overflow-x:hidden;
+  transition:background .3s,color .3s}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent2);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1120px,100% - 2.5rem);margin-inline:auto}
+h1,h2,h3{font-family:var(--display);line-height:1.1;letter-spacing:-.02em}
+h2{font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:.75rem}
+.lead{color:var(--muted);max-width:56ch}
+section{padding:clamp(4rem,9vw,7rem) 0}
+
+/* header */
+header{position:fixed;inset:0 0 auto;z-index:20;background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font:800 1.35rem var(--display);text-decoration:none;letter-spacing:-.03em}
+.logo span{color:var(--accent)}
+nav ul{display:flex;gap:.25rem;list-style:none;align-items:center}
+nav a{text-decoration:none;padding:.5rem .85rem;border-radius:999px;color:var(--muted);font-weight:500;transition:.2s}
+nav a:hover{color:var(--text);background:var(--surface2)}
+.tools{display:flex;gap:.6rem;align-items:center}
+.themes{display:flex;gap:.4rem;padding:.3rem;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+.themes button{width:22px;height:22px;border-radius:50%;border:2px solid transparent;cursor:pointer}
+.themes button[aria-pressed="true"]{border-color:var(--text)}
+.t-night{background:linear-gradient(135deg,#8c7bff,#0d1020)}
+.t-day{background:linear-gradient(135deg,#4b3fe0,#f5f6fc)}
+.t-sunset{background:linear-gradient(135deg,#ff7a90,#1b1220)}
+.menu{display:none;background:var(--surface);color:var(--text);border:1px solid var(--line);
+  width:42px;height:42px;border-radius:12px;cursor:pointer;font-size:1.2rem}
+
+/* hero */
+.hero{padding-top:calc(68px + clamp(3rem,8vw,6rem));position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;width:520px;height:520px;right:-140px;top:-60px;border-radius:50%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--accent) 35%,transparent),transparent 68%);z-index:-1}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:center}
+.hello{display:inline-flex;gap:.55rem;align-items:center;border:1px solid var(--line);background:var(--surface);
+  padding:.35rem .9rem;border-radius:999px;font-size:.95rem;color:var(--muted);margin-bottom:1.4rem}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--accent2);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent2) 25%,transparent)}
+h1{font-size:clamp(2.8rem,8vw,5.6rem);font-weight:800;margin-bottom:1.2rem}
+h1 .grad{background:linear-gradient(100deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.5rem;border-radius:14px;font-weight:600;
+  text-decoration:none;border:1px solid var(--line);transition:transform .2s,box-shadow .2s;cursor:pointer;font-family:inherit;font-size:1rem}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--accent);color:var(--on-accent);border-color:transparent;
+  box-shadow:0 10px 30px -10px var(--accent)}
+.btn.ghost{background:var(--surface);color:var(--text)}
+
+.editor{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.55)}
+.editor-top{display:flex;align-items:center;gap:.4rem;padding:.8rem 1rem;background:var(--surface2);border-bottom:1px solid var(--line)}
+.editor-top i{width:11px;height:11px;border-radius:50%;background:var(--line)}
+.editor-top i:nth-child(1){background:#ff6b6b}.editor-top i:nth-child(2){background:#ffc46b}.editor-top i:nth-child(3){background:var(--accent2)}
+.editor-top span{margin-left:.6rem;font-size:.85rem;color:var(--muted)}
+.photo{display:flex;gap:1rem;align-items:center;padding:1.2rem 1.4rem 0}
+.avatar{width:72px;height:72px;border-radius:20px;overflow:hidden;flex:none;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--on-accent);font:800 1.8rem var(--display)}
+.avatar img{width:100%;height:100%;object-fit:cover}
+pre{padding:1.2rem 1.4rem 1.5rem;font:500 .95rem/1.85 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow-x:auto;color:var(--muted)}
+pre .k{color:var(--accent)}pre .s{color:var(--accent2)}pre .t{color:var(--text)}
+
+/* load sequence (the one orchestrated motion) */
+@media (prefers-reduced-motion:no-preference){
+  .hero .seq{opacity:0;transform:translateY(14px);animation:in .7s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--i)*110ms)}
+  @keyframes in{to{opacity:1;transform:none}}
+}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.skills{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
+.chip{padding:.5rem 1rem;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-weight:500}
+.chip.hot{background:color-mix(in srgb,var(--accent) 16%,var(--surface));border-color:var(--accent)}
+.facts{display:grid;gap:1rem}
+.fact{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1.3rem 1.5rem}
+.fact h3{font-size:1.15rem;margin-bottom:.25rem}
+.fact p{color:var(--muted);font-size:1rem}
+
+/* experience */
+.timeline{margin-top:2.2rem;display:grid;gap:1.4rem;position:relative;padding-left:1.8rem;border-left:2px solid var(--line)}
+.job{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:1.5rem 1.6rem}
+.job::before{content:"";position:absolute;left:calc(-1.8rem - 7px);top:1.9rem;width:12px;height:12px;border-radius:50%;
+  background:var(--accent);box-shadow:0 0 0 5px var(--bg)}
+.job-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.4rem 1rem;margin-bottom:.6rem}
+.job h3{font-size:1.3rem}
+.job .when{color:var(--accent2);font-weight:600;font-size:.95rem}
+.job .org{color:var(--muted);margin-bottom:.8rem}
+.job ul{margin-left:1.1rem;color:var(--muted);display:grid;gap:.35rem}
+
+/* projects */
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.6rem 0 2rem}
+.filters button{background:var(--surface);color:var(--muted);border:1px solid var(--line);padding:.5rem 1.1rem;border-radius:999px;
+  font:500 .95rem var(--body);cursor:pointer;transition:.2s}
+.filters button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:transparent}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.4rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .25s,border-color .25s}
+.card:hover{transform:translateY(-4px);border-color:var(--accent)}
+.card[hidden]{display:none}
+.shot{aspect-ratio:16/10;position:relative;display:grid;place-items:center;font-size:3rem;
+  background:linear-gradient(135deg,var(--c1),var(--c2))}
+.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card-body{padding:1.2rem 1.3rem 1.4rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.card h3{font-size:1.25rem}
+.card p{color:var(--muted);font-size:.98rem;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem}
+.tags span{font-size:.8rem;padding:.15rem .6rem;border-radius:999px;background:var(--surface2);color:var(--muted)}
+.card a.more{margin-top:.6rem;font-weight:600;text-decoration:none;color:var(--accent)}
+.card a.more:hover{text-decoration:underline}
+.card{cursor:pointer}
+.actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.7rem}
+.actions a{padding:.45rem 1rem;border-radius:10px;font-weight:600;font-size:.92rem;text-decoration:none;
+  border:1px solid var(--line);background:var(--surface2);color:var(--text);transition:.2s}
+.actions a:hover{border-color:var(--accent)}
+.actions a.live{background:var(--accent);color:var(--on-accent);border-color:transparent}
+
+/* contact */
+.contact-box{background:linear-gradient(135deg,var(--surface),var(--surface2));border:1px solid var(--line);
+  border-radius:28px;padding:clamp(2rem,6vw,4rem);display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+form{display:grid;gap:.9rem}
+label{font-size:.9rem;color:var(--muted);font-weight:500}
+input,textarea{width:100%;margin-top:.3rem;background:var(--bg);color:var(--text);border:1px solid var(--line);
+  border-radius:12px;padding:.8rem 1rem;font:inherit}
+input:focus,textarea:focus{outline:2px solid var(--accent);border-color:transparent}
+textarea{min-height:120px;resize:vertical}
+.links{display:grid;gap:.7rem;margin-top:1.5rem}
+.links a{display:flex;justify-content:space-between;padding:.9rem 1.1rem;background:var(--bg);border:1px solid var(--line);
+  border-radius:14px;text-decoration:none;font-weight:500;transition:.2s}
+.links a:hover{border-color:var(--accent)}
+.links a{gap:.2rem 1rem;flex-wrap:wrap}
+.links a span:last-child{margin-left:auto;text-align:right;overflow-wrap:anywhere}
+@media (max-width:560px){
+  .links a{flex-direction:column;gap:.1rem}
+  .links a span:last-child{margin-left:0;text-align:left;color:var(--muted);font-weight:400}
+}
+#note{min-height:1.4em;color:var(--accent2);font-weight:500}
+.reach{display:grid;gap:1.1rem;margin-top:1.6rem;justify-items:start}
+.reach .line{display:flex;align-items:center;gap:.9rem;text-decoration:none;font-weight:500;overflow-wrap:anywhere}
+.reach .line svg{color:var(--accent);flex:none}
+.reach .line:hover span{text-decoration:underline}
+.social{display:flex;flex-wrap:wrap;gap:.7rem;margin:.4rem 0}
+.social a{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:var(--bg);
+  border:1px solid var(--line);transition:transform .2s,border-color .2s,color .2s}
+.social a:hover{transform:translateY(-3px);border-color:var(--accent);color:var(--accent)}
+footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-size:.95rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem}
+
+/* responsive */
+@media (max-width:860px){
+  .hero-grid,.about-grid,.contact-box{grid-template-columns:1fr}
+  .menu{display:block}
+  nav{position:absolute;top:68px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);display:none;padding:.8rem 1.25rem 1.2rem}
+  nav.open{display:block}
+  nav ul{flex-direction:column;align-items:stretch}
+  nav a{display:block;padding:.8rem 1rem}
+}
+@media (max-width:420px){ .themes{gap:.3rem;padding:.25rem} .themes button{width:20px;height:20px} .logo{font-size:1.15rem} .tools{gap:.4rem} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top">aayush<span>.dev</span></a>
+    <nav id="nav" aria-label="Main">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="tools">
+      <div class="themes" role="group" aria-label="Colour theme">
+        <button class="t-night" data-set="night" aria-label="Night theme" aria-pressed="true"></button>
+        <button class="t-day" data-set="day" aria-label="Day theme" aria-pressed="false"></button>
+        <button class="t-sunset" data-set="sunset" aria-label="Sunset theme" aria-pressed="false"></button>
+      </div>
+      <button class="menu" id="menu" aria-label="Open menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="hello seq" style="--i:0"><span class="dot"></span> Now at Webmyne</div>
+        <h1 class="seq" style="--i:1">Hi, I’m Aayush.<br><span class="grad">I build things for the web.</span></h1>
+        <p class="lead seq" style="--i:2">Software developer with 1.5+ years of experience in Angular, ASP.NET Core and the MERN stack. I build healthcare and full-stack web apps, and I care about clean APIs and fast queries.</p>
+        <div class="cta seq" style="--i:3">
+          <a class="btn primary" href="#projects">See my projects</a>
+          <a class="btn ghost" href="RESUME/AAYUSH%20RESUME.pdf" target="_blank" rel="noopener">View resume</a>
+        </div>
+      </div>
+      <div class="editor seq" style="--i:4" aria-hidden="true">
+        <div class="editor-top"><i></i><i></i><i></i><span>aayush.js</span></div>
+        <div class="photo">
+          <div class="avatar"><img src="aayush.jpg" alt="" onerror="this.remove();this.parentNode.append('A')"></div>
+        </div>
+        <pre><span class="k">const</span> <span class="t">aayush</span> = {
+  role: <span class="s">"Software Developer"</span>,
+  stack: [<span class="s">"Angular"</span>, <span class="s">".NET"</span>, <span class="s">"MERN"</span>],
+  experience: <span class="s">"1.5+ years"</span>,
+  company: <span class="s">"Webmyne"</span>,
+  cgpa: <span class="s">9.18</span>
+};</pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about-grid">
+      <div>
+        <h2>About me</h2>
+        <p class="lead">I work on healthcare credentialing and provider-management software, turning old screens into modern Angular apps backed by ASP.NET APIs. Outside work I build MERN projects to keep learning full stack.</p>
+        <div class="skills">
+          <span class="chip hot">Angular</span><span class="chip hot">ASP.NET Core</span><span class="chip hot">React</span><span class="chip hot">Node.js</span>
+          <span class="chip hot">TypeScript</span><span class="chip hot">Kendo UI</span><span class="chip hot">VB.NET</span><span class="chip hot">SQL Server</span><span class="chip">MongoDB</span>
+          <span class="chip hot">C#</span><span class="chip hot">JavaScript</span><span class="chip">Java</span><span class="chip">Python</span><span class="chip">Tailwind CSS</span><span class="chip">Bootstrap</span>
+          <span class="chip">Git</span><span class="chip">Azure DevOps</span><span class="chip">Postman</span><span class="chip">REST API design</span>
+        </div>
+      </div>
+      <div class="facts">
+        <div class="fact"><h3>Education</h3><p>B.E. in Information Technology, SVIT, 2025. CGPA 9.18 / 10.</p></div>
+        <div class="fact"><h3>What I focus on</h3><p>Privileging workflows, REST API design and query optimization.</p></div>
+        <div class="fact"><h3>Right now</h3><p>Building an ERP-based project at Webmyne Systems Pvt. Ltd. since August 2026.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <h2>Experience</h2>
+      <p class="lead">From internships to production healthcare software.</p>
+      <div class="timeline">
+        <article class="job">
+          <div class="job-head"><h3>Software Developer</h3><span class="when">Aug 2026 – Present</span></div>
+          <p class="org">Webmyne Systems Pvt. Ltd.</p>
+          <ul>
+            <li>Developing and enhancing modules of an ERP-based business application that supports core day-to-day business workflows.</li>
+            <li>Collaborating with the team to deliver reliable, maintainable features, applying my experience in REST API design and SQL query optimization.
+</li>
+          </ul>
+        </article>
+        <article class="job">
+          <div class="job-head"><h3>Trainee Software Engineer</h3><span class="when">Jun 2025 – Jul 2026</span></div>
+          <p class="org">Healthcare Informatics Pvt. Ltd.</p>
+          <ul>
+            <li>Merged four modules (Privileging, Provider Onboarding, Source Verification and Expirable Data) into one Credentialing module, so a provider’s full record is in one place.</li>
+            <li>Added remark and follow-up date fields to each record for ongoing tracking.</li>
+            <li>Moved the legacy ASPX Dashboard and Payer Mapping screens to Angular and ASP.NET Web API, with drag-and-drop configurable dashboard widgets.</li>
+            <li>Built a reusable date-range filter for Kendo Grid using Kendo MultiCalendar and Kendo Filter.</li>
+            <li>Built a reusable “Select All” directive for Kendo MultiSelect dropdowns.</li>
+          </ul>
+        </article>
+        <article class="job">
+          <div class="job-head"><h3>Software Developer Intern</h3><span class="when">Jan – Apr 2025</span></div>
+          <p class="org">Healthcare Informatics Pvt. Ltd. (certified)</p>
+          <ul>
+            <li>Built the Dynamic Form Builder with role-based access on the MERN stack as the main internship deliverable.</li>
+          </ul>
+        </article>
+        <article class="job">
+          <div class="job-head"><h3>Software Developer Intern</h3><span class="when">Jun – Jul 2024</span></div>
+          <p class="org">CodeSpeedy Technology (certified)</p>
+          <ul>
+            <li>Completed 5 technical tasks on Node.js, Express.js and MongoDB, and published them as articles on CodeSpeedy.</li>
+            <li>Topics: route params and query strings, MongoDB–Express connection, CRUD, POST parameters and a password-visibility toggle.</li>
+            <li><a href="https://drive.google.com/file/d/1wC0me3SXT9lAfkDRINd6_4CkCuSsmbvD/view?usp=drive_link" target="_blank" rel="noopener" style="color:var(--accent)">View certificate</a></li>
+          </ul>
+        </article>
+        <article class="job">
+          <div class="job-head"><h3>Web Developer Intern</h3><span class="when">Sep – Oct 2023</span></div>
+          <p class="org">Bharat Intern (certified)</p>
+          <ul>
+            <li>Built this portfolio and small apps such as a password generator, temperature converter and rock paper scissors game.</li>
+            <li><a href="RESUME/AAYUSH%20RESUME.pdf" target="_blank" rel="noopener" style="color:var(--accent)">View certificate</a></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <h2>Projects</h2>
+      <p class="lead">Full-stack apps and small tools I’ve built. Filter by type, then open any project to see the code.</p>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button data-f="all" aria-pressed="true">All</button>
+        <button data-f="app" aria-pressed="false">Web apps</button>
+        <button data-f="tool" aria-pressed="false">Tools</button>
+        <button data-f="game" aria-pressed="false">Games</button>
+      </div>
+      <div class="grid" id="grid">
+        <article class="card" data-c="app" style="--c1:#6a5cff;--c2:#2fd3b5">
+          <div class="shot">🛒<img src="ecommerce.jpg" alt="E-commerce website screenshot" loading="lazy" onerror="this.remove()"></div>
+          <div class="card-body"><h3>Mobile E-Commerce App</h3><p>Full-stack shop with OTP login, secure cookie sessions, a cart and a mobile-first layout.</p>
+          <div class="tags"><span>MERN</span><span>OTP auth</span></div>
+          <a class="more" href="https://github.com/Aayush1911" target="_blank" rel="noopener">View on GitHub</a></div>
+        </article>
+        <article class="card" data-c="app" style="--c1:#4b6cff;--c2:#2fd3b5">
+          <div class="shot">📝</div>
+          <div class="card-body"><h3>Dynamic Form Builder</h3><p>Admins and users sign in with JWT and create custom forms without code changes. Includes CRUD and PDF export.</p>
+          <div class="tags"><span>MERN</span><span>JWT</span><span>Role-based access</span></div>
+          <a class="more" href="https://github.com/Aayush1911" target="_blank" rel="noopener">View on GitHub</a></div>
+        </article>
+        <article class="card" data-c="app" style="--c1:#8c7bff;--c2:#ff7a90">
+          <div class="shot">📓</div>
+          <div class="card-body"><h3>iNotebook</h3><p>A secure note-taking app with encrypted login and personal accounts for organising notes.</p>
+          <div class="tags"><span>MERN</span></div>
+          <a class="more" href="https://github.com/Aayush1911" target="_blank" rel="noopener">View on GitHub</a></div>
+        </article>
+        <article class="card" data-c="app" style="--c1:#2fd3b5;--c2:#4b3fe0">
+          <div class="shot">🛍️<img src="Ecommerce-Website-redux.jpg" alt="Ecommerce website screenshot" loading="lazy" onerror="this.remove()"></div>
+          <div class="card-body"><h3>Ecommerce Website</h3><p>A shopping site built with React and Redux Toolkit for cart and product state.</p>
+          <div class="tags"><span>React</span><span>Redux Toolkit</span></div>
+          <a class="more" href="https://github.com/Aayush1911" target="_blank" rel="noopener">View on GitHub</a></div>
+        </article>
+        <article class="card" data-c="app" style="--c1:#ff9a3d;--c2:#ff5e7e">
+          <div class="shot">📦<img src="amazon.png" alt="Amazon clone screenshot" loading="lazy" onerror="this.remove()"></div>
+          <div class="card-body"><h3>Amazon Clone</h3><p>A front-end copy of Amazon’s home page with a responsive layout.</p>
+          <div class="tags"><span>HTML</span><span>CSS</span></div>
+          <a class="more" href="https://github.com/Aayush1911" target="_blank" rel="noopener">View on GitHub</a></div>
+        </article>
+        <article class="card" data-c="app" style="--c1:#1db954;--c2:#0d4f6c">
+          <div class="shot">🎵<img src="music_explorer.jpeg" alt="Music explorer screenshot" loading="lazy" onerror="this.remove()"></div>
+          <div class="card-body"><h3>Music Explorer</h3><p>Browse and discover music with a clean, card-based interface.</p>
+          <div class="tags"><span>Next.js</span><span>Aceternity UI</span></div>
+          <a class="more" href="https://github.com/Aayush1911" target="_blank" rel="noopener">View on GitHub</a></div>
+        </article>
+        <article class="card" data-c="tool" style="--c1:#ffb347;--c2:#e8505b">
+          <div class="shot">⏰<img src="alarm.png" alt="Alarm clock screenshot" loading="lazy" onerror="this.remove()"></div>
+          <div class="card-body"><h3>Alarm Clock</h3><p>Set an alarm and get alerted at the time you choose.</p>
+          <div class="tags"><span>JavaScript</span></div>
+          <a class="more" href="https://github.com/Aayush1911" target="_blank" rel="noopener">View on GitHub</a></div>
+        </article>
+        <article class="card" data-c="tool" style="--c1:#4b6cff;--c2:#8c7bff">
+          <div class="shot">🔐<img src="password.png" alt="Password generator screenshot" loading="lazy" onerror="this.remove()"></div>
+          <div class="card-body"><h3>Password Generator</h3><p>Creates strong random passwords with the length and characters you pick.</p>
+          <div class="tags"><span>JavaScript</span></div>
+          <a class="more" href="https://github.com/Aayush1911" target="_blank" rel="noopener">View on GitHub</a></div>
+        </article>
+        <article class="card" data-c="tool" style="--c1:#ff7a90;--c2:#ffc46b">
+          <div class="shot">🌡️<img src="temperature-converter.png" alt="Temperature converter screenshot" loading="lazy" onerror="this.remove()"></div>
+          <div class="card-body"><h3>Temperature Converter</h3><p>Convert between Celsius, Fahrenheit and Kelvin instantly.</p>
+          <div class="tags"><span>HTML</span><span>JavaScript</span></div>
+          <a class="more" href="https://github.com/Aayush1911" target="_blank" rel="noopener">View on GitHub</a></div>
+        </article>
+        <article class="card" data-c="tool" style="--c1:#2b3158;--c2:#8c7bff">
+          <div class="shot">✍️<img src="textutil.png" alt="TextUtils screenshot" loading="lazy" onerror="this.remove()"></div>
+          <div class="card-body"><h3>TextUtils</h3><p>Convert text to upper, lower or camel case and clean up whitespace.</p>
+          <div class="tags"><span>React</span></div>
+          <a class="more" href="https://github.com/Aayush1911" target="_blank" rel="noopener">View on GitHub</a></div>
+        </article>
+        <article class="card" data-c="game" style="--c1:#e8505b;--c2:#6a5cff">
+          <div class="shot">✊<img src="rps_game.png" alt="Rock paper scissors screenshot" loading="lazy" onerror="this.remove()"></div>
+          <div class="card-body"><h3>Rock Paper Scissors</h3><p>Play against the computer and keep track of the score.</p>
+          <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+          <a class="more" href="https://github.com/Aayush1911" target="_blank" rel="noopener">View on GitHub</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-box">
+        <div>
+          <h2>Let’s work together</h2>
+          <p class="lead">Have a project, role or question? Send a message and I’ll reply soon.</p>
+          <div class="reach">
+            <a href="mailto:aayush191102@gmail.com" class="line"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>aayush191102@gmail.com</span></a>
+            <a href="tel:+918511844200" class="line"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>8511844200</span></a>
+            <div class="social">
+              <a href="https://www.facebook.com/profile.php?id=100012076872900&amp;mibextid=ZbWKwL" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+              <a href="https://instagram.com/patel_ius" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+              <a href="https://github.com/Aayush1911" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+              <a href="https://www.linkedin.com/in/PatelAayushHareshbhai" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+              <a href="https://twitter.com/Aayush_1911" target="_blank" rel="noopener" aria-label="Twitter"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+            </div>
+            <a class="btn primary" href="RESUME/AAYUSH%20RESUME.pdf" target="_blank" rel="noopener">Download CV</a>
+          </div>
+        </div>
+        <form id="form" novalidate>
+          <label>Your name<input name="name" required autocomplete="name"></label>
+          <label>Your email<input name="email" type="email" required autocomplete="email"></label>
+          <label>Message<textarea name="msg" required></textarea></label>
+          <button class="btn primary" type="submit">Send message</button>
+          <p id="note" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Aayush Patel. All rights reserved.</span><span>Built with HTML, CSS and JavaScript</span></div></footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  function setTheme(t){
+    root.setAttribute('data-theme',t);
+    document.querySelectorAll('[data-set]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.set===t)});
+    try{localStorage.setItem('theme',t)}catch(e){}
+  }
+  var saved=null;try{saved=localStorage.getItem('theme')}catch(e){}
+  if(!saved&&window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)saved='day';
+  setTheme(saved||'night');
+  document.querySelectorAll('[data-set]').forEach(function(b){b.addEventListener('click',function(){setTheme(b.dataset.set)})});
+
+  var menu=document.getElementById('menu'),nav=document.getElementById('nav');
+  menu.addEventListener('click',function(){
+    var o=nav.classList.toggle('open');menu.setAttribute('aria-expanded',o);
+  });
+  nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');menu.setAttribute('aria-expanded',false)})});
+
+  var fb=document.querySelectorAll('.filters button'),cards=document.querySelectorAll('.card');
+  fb.forEach(function(b){b.addEventListener('click',function(){
+    fb.forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+    cards.forEach(function(c){c.hidden=!(b.dataset.f==='all'||c.dataset.c===b.dataset.f)});
+  })});
+
+  /* Per project: live = demo URL, code = repo URL. Leave '' if there isn't one. */
+  var P={
+    'Mobile E-Commerce App':{live:'https://phonewalaclient.vercel.app/',code:'https://github.com/Aayush1911/phonewala'},
+    'Dynamic Form Builder':{live:'',code:'https://github.com/Aayush1911/Dynamic-Form'},
+    'iNotebook':{live:'https://i-notebook-seven.vercel.app/login',code:'https://github.com/Aayush1911/iNotebook'},
+    'Ecommerce Website':{live:'https://aayushpatelecommercewebsite.netlify.app/',code:'https://github.com/Aayush1911/ECOMMERCE-WEBSITE-BY-REACT-REDUX'},
+    'Amazon Clone':{live:'https://aayush1911.github.io/amazonclone/',code:'https://github.com/Aayush1911/amazonclone'},
+'Music Explorer':{live:'https://music-explorer-aceternity-ui-library.vercel.app/',code:'https://github.com/Aayush1911/Music-Explorer-Aceternity-UI-Library'},
+    'Alarm Clock':{live:'',code:''},
+    'Password Generator':{live:'https://aayush1911.github.io/passwordgenerator/',code:'https://github.com/Aayush1911/passwordgenerator'},
+    'Temperature Converter':{live:'https://aayush1911.github.io/-TEMPERATURE-CONVERTER/',code:'https://github.com/Aayush1911/-TEMPERATURE-CONVERTER'},
+    'TextUtils':{live:'https://aayushpateltextutils.netlify.app',code:'https://github.com/Aayush1911/Textutils'},
+    'Rock Paper Scissors':{live:'https://aayush1911.github.io/Rock-Paper-Scissors-Game/',code:'https://github.com/Aayush1911/Rock-Paper-Scissors-Game'}
+  };
+  cards.forEach(function(c){
+    var old=c.querySelector('a.more'),t=c.querySelector('h3').textContent.trim(),d=P[t]||{};
+    var live=d.live||'',code=d.code||'';
+    if(!live&&!code)code='https://github.com/Aayush1911';
+    var box=document.createElement('div');box.className='actions';
+    function add(href,label,cls){
+      var l=document.createElement('a');l.href=href;l.textContent=label;l.target='_blank';l.rel='noopener';
+      if(cls)l.className=cls;box.appendChild(l);
+    }
+    if(live)add(live,'Live demo','live');
+    if(code)add(code,'Code');
+    old.replaceWith(box);
+    c.addEventListener('click',function(e){
+      if(e.target.closest('a'))return;
+      window.open(live||code,'_blank','noopener');
+    });
+  });
+
+  document.getElementById('form').addEventListener('submit',function(e){
+    e.preventDefault();var f=e.target,n=document.getElementById('note');
+    if(!f.name.value.trim()||!/^\S+@\S+\.\S+$/.test(f.email.value)||!f.msg.value.trim()){
+      n.style.color='var(--accent)';n.textContent='Please fill in your name, a valid email and a message.';return;
+    }
+    var s=encodeURIComponent('Portfolio message from '+f.name.value.trim());
+    var b=encodeURIComponent(f.msg.value.trim()+'\n\n'+f.name.value.trim()+' ('+f.email.value.trim()+')');
+    window.location.href='mailto:aayush191102@gmail.com?subject='+s+'&body='+b;
+    n.style.color='var(--accent2)';n.textContent='Opening your email app to send the message.';
+  });
+})();
+</script>
+</body>
+</html>
